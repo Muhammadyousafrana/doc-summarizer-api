@@ -2,5 +2,5 @@ uvicorn[standard]
 gunicorn
 fastapi
 google-generativeai
-textract==1.6.4
+textract
 python-multipart
