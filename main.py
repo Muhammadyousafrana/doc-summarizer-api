@@ -31,3 +31,18 @@ async def summarize_file(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Empty or unreadable document.")
     summary = summarize_text(content, model)
     return JSONResponse(content={"summary": summary})
+
+@app.post("/chat")
+async def chat_about_summary(
+    summary: str = Form(...),
+    question: str = Form(...)
+):
+    prompt = (
+        f"The following is a summary generated from some content (e.g., a document, audio, video, or other media):\n\n"
+        f"{summary}\n\n"
+        f"The user has a question or needs further elaboration based on this summary:\n\n"
+        f"Question: {question}\n\n"
+        f"Please provide a detailed and helpful response."
+    )
+    response = model.generate_content(prompt)
+    return JSONResponse(content={"response": response.text})
