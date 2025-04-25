@@ -43,8 +43,8 @@ async def chat_about_summary(
     f"User Input:\n{question}\n\n"
     f"Determine whether the user is asking a question *about* the summary or requesting to *improve* it. "
     f"If it's a question, answer it clearly and directly based on the summary. "
-    f"If it's feedback asking for improvement (e.g., 'make it better', 'make it more concise'), then rewrite the summary to match the intent. "
-    f"Do NOT explain the user's language or grammar. Just respond appropriately."
+    f"If it's feedback asking for improvement (e.g., 'make it better', 'make it more concise'), then explain and rewrite the summary to match the intent. "
+    f"Do NOT explain the user's language or grammar. Just respond appropriately with explanation."
     )
 
     response = model.generate_content(prompt)
