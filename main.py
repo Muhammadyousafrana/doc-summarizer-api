@@ -43,7 +43,7 @@ async def chat_about_summary(
         f"User Input:\n{question}\n\n"
         f"Determine whether the user is asking a question about the summary or giving feedback to improve it.\n"
         f"If it's a question, answer it clearly using information from the summary.\n"
-        f"If it's feedback (like 'make it better'), rewrite the summary accordingly.\n"
+        f"If it's feedback (like 'make it better'), rewrite the summary with a bit more detail.\n"
         f"Important: DO NOT explain your reasoning or comment on the user's input. Only provide the answer or the improved summary directly."
     )
 
