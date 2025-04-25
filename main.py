@@ -37,15 +37,15 @@ async def chat_about_summary(
     summary: str = Form(...),
     question: str = Form(...)
 ):
-    prompt = (
+   prompt = (
     f"You are a helpful assistant. Below is a summary, followed by user input.\n\n"
     f"Summary:\n{summary}\n\n"
     f"User Input:\n{question}\n\n"
-    f"Determine whether the user is asking a question *about* the summary or requesting to *improve* it. "
-    f"If it's a question, answer it clearly and directly based on the summary. "
-    f"If it's feedback asking for improvement (e.g., 'make it better', 'make it more concise'), then explain and rewrite the summary to match the intent. "
-    f"Do NOT explain the user's language or grammar. Just respond appropriately with explanation."
-    )
+    f"Determine whether the user is asking a question about the summary or giving feedback to improve it.\n"
+    f"If it's a question, answer it clearly using information from the summary.\n"
+    f"If it's feedback (like 'make it better'), rewrite the summary accordingly.\n"
+    f"Important: DO NOT explain your reasoning or comment on the user's input. Only provide the answer or the improved summary directly."
+   )
 
     response = model.generate_content(prompt)
     return JSONResponse(content={"response": response.text})
