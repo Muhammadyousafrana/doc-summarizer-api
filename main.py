@@ -12,7 +12,7 @@ if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY environment variable not set")
 
 genai.configure(api_key=GEMINI_API_KEY)
-model = GenerativeModel("learnlm-1.5-pro-experimental")
+model = GenerativeModel("gemma-3-12b-it")
 
 @app.get("/")
 async def root():
@@ -49,3 +49,19 @@ async def chat_about_summary(
 
     response = model.generate_content(prompt)
     return JSONResponse(content={"response": response.text})
+
+@app.post("/translate")
+async def translate_text( 
+text:str = Form(...),
+target_language:str = Form(...)
+):
+    prompt = (
+        f"translate the following text into {target_language}:\n\n"
+        f"Text:\n{text}\n\n"
+        f"only return the translated text, without explanation or comments."
+    )
+    try:
+        response = model.generate_content(prompt)
+        return JSONResponse(content = response.text.strip())
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error during translation: {str(e)}")
