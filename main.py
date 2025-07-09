@@ -12,10 +12,10 @@ app = FastAPI(title="Universal Text & Document Summarizer")
 # ✅ Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace "*" with ["https://yourfrontend.com"] for production
+    allow_origins=["https://summarization-app.streamlit.app"],  # Replace "*" with ["https://yourfrontend.com"] for production
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["https://summarization-app.streamlit.app"],
+    allow_headers=["https://summarization-app.streamlit.app/"],
 )
 
 # ✅ Configure Gemini API
